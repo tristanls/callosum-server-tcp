@@ -4,7 +4,7 @@ _Stability: 1 - [Experimental](https://github.com/tristanls/stability-index#stab
 
 [![NPM version](https://badge.fury.io/js/callosum-server-tcp.png)](http://npmjs.org/package/callosum-server-tcp)
 
-TCP Server for Callosum: a self-balancing distributed services protocol.
+TCP Server for [Callosum](https://github.com/tristanls/callosum): a self-balancing distributed services protocol.
 
 ## Usage
 
@@ -23,7 +23,7 @@ callosumServer.on('connection', function (conn) {
 callosumServer.on('slot request', function (callback) {
     // assign a new slot
     var slot = /* pick lowest slot available (probably from a heap), ex: */ 0;
-    return callback(slot); 
+    return callback(null, slot); 
 });
 
 callosumServer.on('slot free', function (slot) {
