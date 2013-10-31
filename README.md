@@ -97,6 +97,7 @@ Starts the server to listen to new connections.
 
   * `function (connection) {}`
     * `connection`: _Socket object_ The connection object.
+      * `_slot`: _Integer_ _**CAUTION: reserved for internal use**_ The slot number assigned to this connection. Don't touch it.
 
 Emitted once the connection is assigned a new slot via a `callback` to the `slot request` event.
 
