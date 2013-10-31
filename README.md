@@ -15,20 +15,20 @@ var callosumServer = new CallosumServer({
     port: 4040
 });
 
+var CallosumServerSlots = require('callosum-server-slots');
+var callosumServerSlots = new CallosumServerSlots();
+
 callosumServer.on('connection', function (conn) {
     // one of the active connections from clients that has been assigned a slot
     // do stuff with `conn` 
 });
 
 callosumServer.on('slot request', function (callback) {
-    // assign a new slot
-    var slot = /* pick lowest slot available (probably from a heap), ex: */ 0;
-    return callback(null, slot); 
+    return callback(null, callosumServerSlots.get()); 
 });
 
 callosumServer.on('slot free', function (slot) {
-    // free the slot
-    // probably put it back on the heap 
+    callosumServerSlots.put(slot);
 });
 
 callosumServer.listen(function () {
@@ -55,6 +55,8 @@ This is all the information necessary for a client to either accept the slot, an
 ## Documentation
 
 ### CallosumServer
+
+**Public API**
 
   * [CallosumServer.listen(options, \[callback\])](#callosumserverlistenoptions-callback)
   * [new CallosumServer(options)](#new-callosumserveroptions)
